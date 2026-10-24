@@ -3693,8 +3693,316 @@
       transform: translateY(-1px);
     }
 
-    .btn-copy-script.copied, .btn-copy-clause.copied {
-      background: #107050;
+    /* Profit First & FX Leakage Styling */
+    .calc-profit-view, .calc-fx-view {
+      display: none;
+    }
+    .calc-profit-view.is-active, .calc-fx-view.is-active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      animation: fadeInScale 0.35s ease;
+    }
+    @media (max-width: 900px) {
+      .calc-profit-view.is-active, .calc-fx-view.is-active {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .profit-allocation-bar {
+      display: flex;
+      height: 12px;
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin: 16px 0 24px 0;
+      background: rgba(19, 22, 27, 0.08);
+    }
+    .profit-bar-segment {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    .profit-bar-owner { background: var(--accent-green); }
+    .profit-bar-tax { background: #b7791f; }
+    .profit-bar-opex { background: #1d4ed8; }
+    .profit-bar-buffer { background: #7c3aed; }
+
+    .profit-buckets-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .profit-bucket-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .profit-bucket-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .profit-bucket-amount {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-ink);
+    }
+    .profit-bucket-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* FX Leakage Table */
+    .fx-comparison-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-top: 14px;
+    }
+    .fx-comparison-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.88rem;
+    }
+    .fx-comparison-row:last-child {
+      border-bottom: none;
+      font-weight: 700;
+      color: var(--accent-green);
+    }
+    .fx-tag-loss {
+      color: var(--color-error);
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+    .fx-tag-saved {
+      color: var(--accent-green);
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    /* Tax Deductions Finder Styling */
+    .tax-finder-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 32px;
+    }
+    .tax-finder-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-warm);
+    }
+    .tax-savings-counter-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--accent-green-subtle);
+      border: 1px solid rgba(15, 93, 74, 0.25);
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+    }
+    .tax-savings-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--accent-green);
+      line-height: 1;
+    }
+    .tax-deductions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .tax-item-checkbox-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+    .tax-item-checkbox-wrap:hover {
+      border-color: var(--accent-green);
+      background: var(--bg-card);
+      transform: translateY(-1px);
+    }
+    .tax-item-checkbox-wrap input[type="checkbox"] {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent-green);
+      cursor: pointer;
+    }
+    .tax-item-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tax-item-amount {
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--accent-green);
+    }
+    .tax-item-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Onboarding Protocol Styling */
+    .onboarding-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 32px;
+    }
+    .onboarding-progress-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-warm);
+      flex-wrap: wrap;
+    }
+    .onboarding-bar {
+      flex: 1;
+      min-width: 200px;
+      height: 10px;
+      background: rgba(19, 22, 27, 0.08);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+    }
+    .onboarding-bar-fill {
+      height: 100%;
+      background: var(--accent-green);
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    .onboarding-stages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .onboarding-stage-col {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .onboarding-stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-warm);
+    }
+    .onboarding-stage-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-ink);
+    }
+    .onboarding-stage-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-green-subtle);
+      color: var(--accent-green);
+    }
+    .onboarding-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition-base);
+    }
+    .onboarding-item:hover {
+      background: var(--bg-card);
+    }
+    .onboarding-item input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent-green);
+      cursor: pointer;
+    }
+    .onboarding-item-text {
+      font-size: 0.86rem;
+      color: var(--text-ink);
+      line-height: 1.4;
+    }
+    .onboarding-item.is-done .onboarding-item-text {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* Enhanced PDF Modal Controls */
+    .pdf-meta-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 14px;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+    }
+    .pdf-control-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pdf-control-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .pdf-control-select, .pdf-control-input {
+      font-family: inherit;
+      font-size: 0.82rem;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-warm);
+      background: var(--bg-card);
+      color: var(--text-ink);
     }
   </style>
 </head>
@@ -4283,7 +4591,13 @@
               🛡 Scope Creep Recovery
             </button>
             <button type="button" class="calc-mode-btn" id="btn-calc-mode-rate" aria-pressed="false">
-              🎯 Target Rate Calculator
+              🎯 Target Rate
+            </button>
+            <button type="button" class="calc-mode-btn" id="btn-calc-mode-profit" aria-pressed="false">
+              💼 Profit First
+            </button>
+            <button type="button" class="calc-mode-btn" id="btn-calc-mode-fx" aria-pressed="false">
+              🌍 Global FX Leakage
             </button>
           </div>
         </div>
@@ -4453,6 +4767,152 @@
               </p>
             </div>
           </div>
+
+          <!-- View 4: Profit First Income Allocator -->
+          <div class="calc-profit-view" id="calc-profit-view">
+            <div class="sliders-column">
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-profit-revenue" class="slider-label">Monthly Gross Revenue Inflow</label>
+                  <span class="slider-val-badge" id="val-display-profit-revenue">$10,000</span>
+                </div>
+                <input type="range" id="slider-profit-revenue" class="range-input" min="2000" max="50000" value="10000" step="500">
+                <span class="slider-subnote">Gross invoice payments collected per month</span>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-profit-owner-pct" class="slider-label">Owner's Take-Home Pay Allocation</label>
+                  <span class="slider-val-badge" id="val-display-profit-owner-pct">50%</span>
+                </div>
+                <input type="range" id="slider-profit-owner-pct" class="range-input" min="30" max="65" value="50" step="5">
+                <span class="slider-subnote">Target owner wage transfer</span>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-profit-tax-pct" class="slider-label">Tax Reserve Account</label>
+                  <span class="slider-val-badge" id="val-display-profit-tax-pct">15%</span>
+                </div>
+                <input type="range" id="slider-profit-tax-pct" class="range-input" min="10" max="30" value="15" step="5">
+                <span class="slider-subnote">Locked reserve for quarterly tax filings</span>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-profit-opex-pct" class="slider-label">Operating Expenses Cap</label>
+                  <span class="slider-val-badge" id="val-display-profit-opex-pct">25%</span>
+                </div>
+                <input type="range" id="slider-profit-opex-pct" class="range-input" min="15" max="40" value="25" step="5">
+                <span class="slider-subnote">SaaS tools, hosting, contractors</span>
+              </div>
+            </div>
+
+            <div class="results-column">
+              <div class="profit-allocation-bar">
+                <div class="profit-bar-segment profit-bar-owner" id="pbar-owner" style="width: 50%;" title="Owner's Pay (50%)"></div>
+                <div class="profit-bar-segment profit-bar-tax" id="pbar-tax" style="width: 15%;" title="Tax Reserve (15%)"></div>
+                <div class="profit-bar-segment profit-bar-opex" id="pbar-opex" style="width: 25%;" title="Operating Expenses (25%)"></div>
+                <div class="profit-bar-segment profit-bar-buffer" id="pbar-buffer" style="width: 10%;" title="Profit Buffer (10%)"></div>
+              </div>
+
+              <div class="profit-buckets-grid">
+                <div class="profit-bucket-card">
+                  <div class="profit-bucket-header">
+                    <span>👤 Owner's Pay</span>
+                    <span id="pct-badge-owner">50%</span>
+                  </div>
+                  <div class="profit-bucket-amount" id="bucket-val-owner">$5,000</div>
+                  <div class="profit-bucket-desc">Direct to personal checking</div>
+                </div>
+
+                <div class="profit-bucket-card">
+                  <div class="profit-bucket-header">
+                    <span>🏛️ Tax Reserve</span>
+                    <span id="pct-badge-tax">15%</span>
+                  </div>
+                  <div class="profit-bucket-amount" id="bucket-val-tax" style="color: #b7791f;">$1,500</div>
+                  <div class="profit-bucket-desc">Untouchable tax vault</div>
+                </div>
+
+                <div class="profit-bucket-card">
+                  <div class="profit-bucket-header">
+                    <span>⚙️ Operating Exp</span>
+                    <span id="pct-badge-opex">25%</span>
+                  </div>
+                  <div class="profit-bucket-amount" id="bucket-val-opex" style="color: #1d4ed8;">$2,500</div>
+                  <div class="profit-bucket-desc">Tools &amp; subscriptions</div>
+                </div>
+
+                <div class="profit-bucket-card">
+                  <div class="profit-bucket-header">
+                    <span>🛡️ Profit Buffer</span>
+                    <span id="pct-badge-buffer">10%</span>
+                  </div>
+                  <div class="profit-bucket-amount" id="bucket-val-buffer" style="color: #7c3aed;">$1,000</div>
+                  <div class="profit-bucket-desc">Emergency reserve &amp; bonus</div>
+                </div>
+              </div>
+
+              <p class="calculator-disclaimer">
+                *Based on Mike Michalowicz's Profit First framework. Always allocate profit and taxes first so expenses fit within the remaining cap.
+              </p>
+            </div>
+          </div>
+
+          <!-- View 5: Global FX & Wire Leakage Calculator -->
+          <div class="calc-fx-view" id="calc-fx-view">
+            <div class="sliders-column">
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-fx-volume" class="slider-label">Cross-Border Client Billings / Month</label>
+                  <span class="slider-val-badge" id="val-display-fx-volume">$6,000</span>
+                </div>
+                <input type="range" id="slider-fx-volume" class="range-input" min="1000" max="30000" value="6000" step="500">
+                <span class="slider-subnote">Invoices issued to overseas clients in foreign currencies</span>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-fx-invoices" class="slider-label">International Invoices / Month</label>
+                  <span class="slider-val-badge" id="val-display-fx-invoices">3</span>
+                </div>
+                <input type="range" id="slider-fx-invoices" class="range-input" min="1" max="12" value="3" step="1">
+                <span class="slider-subnote">Average overseas client payment cycles</span>
+              </div>
+
+              <div class="fx-comparison-card">
+                <div class="fx-comparison-row">
+                  <span>Traditional SWIFT Wire (3.5% FX + $45 fee):</span>
+                  <span class="fx-tag-loss" id="fx-loss-bank">-$345 / mo</span>
+                </div>
+                <div class="fx-comparison-row">
+                  <span>Ledgerly Multi-Currency ACH (0.45% fee):</span>
+                  <span style="font-weight: 600; font-family: var(--font-mono);" id="fx-cost-ledgerly">-$27 / mo</span>
+                </div>
+                <div class="fx-comparison-row">
+                  <span>Net Capital Leakage Saved:</span>
+                  <span class="fx-tag-saved" id="fx-saved-annual">+$3,816 / yr</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="results-column">
+              <div class="result-metric-card">
+                <div class="result-metric-num" id="fx-result-leakage-monthly" style="color: var(--color-error);">$318</div>
+                <div class="result-metric-label">Monthly hidden banking fees lost</div>
+              </div>
+
+              <div class="result-metric-card">
+                <div class="result-metric-num" id="fx-result-savings-annual">$3,816</div>
+                <div class="result-metric-label">Annual capital returned to studio</div>
+              </div>
+
+              <p class="calculator-disclaimer">
+                *Traditional banks impose 3% to 4% stealth exchange rate markups beyond standard SWIFT wire fees. Ledgerly's local multi-currency rails eliminate intermediary fee erosion.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -4480,6 +4940,12 @@
           </button>
           <button type="button" class="playbook-tab-btn" id="tab-playbook-sow" role="tab" aria-selected="false" aria-controls="panel-playbook-sow">
             <span>📋</span> Scope Boundary Matrix
+          </button>
+          <button type="button" class="playbook-tab-btn" id="tab-playbook-tax" role="tab" aria-selected="false" aria-controls="panel-playbook-tax">
+            <span>🧾</span> Tax Deductions Finder
+          </button>
+          <button type="button" class="playbook-tab-btn" id="tab-playbook-onboarding" role="tab" aria-selected="false" aria-controls="panel-playbook-onboarding">
+            <span>🚀</span> 72-Hour Onboarding
           </button>
         </div>
 
@@ -4697,6 +5163,194 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 4: Tax Deductions Finder -->
+        <div class="playbook-panel" id="panel-playbook-tax" role="tabpanel" aria-labelledby="tab-playbook-tax">
+          <div class="tax-finder-card">
+            <div class="tax-finder-top">
+              <div>
+                <h3 style="font-size: 1.25rem; font-family: var(--font-serif); margin-bottom: 6px;">Independent Tax Deduction Finder</h3>
+                <p style="color: var(--text-secondary); font-size: 0.92rem;">Select write-offs that apply to your consulting business to calculate estimated tax relief.</p>
+              </div>
+              <div class="tax-savings-counter-badge">
+                <div>
+                  <div style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Est. Tax Savings (at 25% bracket)</div>
+                  <div class="tax-savings-num" id="tax-total-savings">$2,450</div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); border-left: 1px solid rgba(15, 93, 74, 0.2); padding-left: 14px;">
+                  Total Deductions:<br><strong id="tax-total-deductions" style="color: var(--text-ink); font-size: 1rem;">$9,800</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="tax-deductions-grid" id="tax-deductions-grid">
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="1800" checked>
+                <div>
+                  <div class="tax-item-title">
+                    <span>Home Office Space</span>
+                    <span class="tax-item-amount">$1,800/yr</span>
+                  </div>
+                  <div class="tax-item-desc">IRS simplified square footage ($5/sq ft) or percentage of rent &amp; utilities.</div>
+                </div>
+              </label>
+
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="2400" checked>
+                <div>
+                  <div class="tax-item-title">
+                    <span>Laptops, Monitors &amp; Hardware</span>
+                    <span class="tax-item-amount">$2,400/yr</span>
+                  </div>
+                  <div class="tax-item-desc">Section 179 full purchase deduction for primary work computers and peripherals.</div>
+                </div>
+              </label>
+
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="1600" checked>
+                <div>
+                  <div class="tax-item-title">
+                    <span>Software SaaS &amp; Cloud Hosting</span>
+                    <span class="tax-item-amount">$1,600/yr</span>
+                  </div>
+                  <div class="tax-item-desc">Figma, Adobe CC, GitHub, AWS, domain registrations, and Ledgerly subscriptions.</div>
+                </div>
+              </label>
+
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="1200" checked>
+                <div>
+                  <div class="tax-item-title">
+                    <span>Cell Phone &amp; High-Speed Internet</span>
+                    <span class="tax-item-amount">$1,200/yr</span>
+                  </div>
+                  <div class="tax-item-desc">Business-use percentage of broadband internet and dedicated mobile line.</div>
+                </div>
+              </label>
+
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="1400" checked>
+                <div>
+                  <div class="tax-item-title">
+                    <span>Client Meals &amp; Coffee Sprints</span>
+                    <span class="tax-item-amount">$1,400/yr</span>
+                  </div>
+                  <div class="tax-item-desc">50% deductible ordinary and necessary meals while discussing client business.</div>
+                </div>
+              </label>
+
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="1400" checked>
+                <div>
+                  <div class="tax-item-title">
+                    <span>Education, Books &amp; Conferences</span>
+                    <span class="tax-item-amount">$1,400/yr</span>
+                  </div>
+                  <div class="tax-item-desc">Courses, specialized workshops, books, and event admissions to maintain skills.</div>
+                </div>
+              </label>
+
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="3200">
+                <div>
+                  <div class="tax-item-title">
+                    <span>Health Insurance Premiums</span>
+                    <span class="tax-item-amount">$3,200/yr</span>
+                  </div>
+                  <div class="tax-item-desc">Self-employed health insurance deduction for medical, dental, and vision policies.</div>
+                </div>
+              </label>
+
+              <label class="tax-item-checkbox-wrap">
+                <input type="checkbox" class="tax-deduction-check" data-amount="1500">
+                <div>
+                  <div class="tax-item-title">
+                    <span>Accounting &amp; Legal Advisory</span>
+                    <span class="tax-item-amount">$1,500/yr</span>
+                  </div>
+                  <div class="tax-item-desc">CPA tax preparation, contract attorney reviews, and corporate filing fees.</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 5: 72-Hour Onboarding Protocol -->
+        <div class="playbook-panel" id="panel-playbook-onboarding" role="tabpanel" aria-labelledby="tab-playbook-onboarding">
+          <div class="onboarding-card">
+            <div class="onboarding-progress-wrap">
+              <div>
+                <h3 style="font-size: 1.25rem; font-family: var(--font-serif); margin-bottom: 4px;">Agency Client Onboarding Protocol</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">The non-negotiable 72-hour onboarding checklist to establish authority and eliminate project drift.</p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 14px; min-width: 260px;">
+                <div class="onboarding-bar">
+                  <div class="onboarding-bar-fill" id="onboarding-bar-fill" style="width: 37.5%;"></div>
+                </div>
+                <span id="onboarding-count-label" style="font-size: 0.85rem; font-weight: 700; font-family: var(--font-mono); color: var(--accent-green);">3 / 8 Done</span>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-onboarding" style="padding: 4px 10px; font-size: 0.78rem;" title="Reset checklist">Reset</button>
+              </div>
+            </div>
+
+            <div class="onboarding-stages-grid">
+              <!-- Stage 1 -->
+              <div class="onboarding-stage-col">
+                <div class="onboarding-stage-header">
+                  <span class="onboarding-stage-title">Phase 1: Deal Close</span>
+                  <span class="onboarding-stage-badge">Hour 0 – 2</span>
+                </div>
+                <label class="onboarding-item is-done">
+                  <input type="checkbox" class="onboarding-check" data-step="1" checked>
+                  <span class="onboarding-item-text">Issue 50% upfront deposit invoice via Ledgerly with Net-0 terms.</span>
+                </label>
+                <label class="onboarding-item is-done">
+                  <input type="checkbox" class="onboarding-check" data-step="2" checked>
+                  <span class="onboarding-item-text">Secure countersigned Master Services Agreement &amp; Statement of Work.</span>
+                </label>
+                <label class="onboarding-item">
+                  <input type="checkbox" class="onboarding-check" data-step="3">
+                  <span class="onboarding-item-text">Verify initial deposit wire has cleared before reserving sprint calendar.</span>
+                </label>
+              </div>
+
+              <!-- Stage 2 -->
+              <div class="onboarding-stage-col">
+                <div class="onboarding-stage-header">
+                  <span class="onboarding-stage-title">Phase 2: Administrative Alignment</span>
+                  <span class="onboarding-stage-badge">Hour 2 – 24</span>
+                </div>
+                <label class="onboarding-item is-done">
+                  <input type="checkbox" class="onboarding-check" data-step="4" checked>
+                  <span class="onboarding-item-text">Obtain primary Accounts Payable contact email and tax forms (W-9 / W-8BEN).</span>
+                </label>
+                <label class="onboarding-item">
+                  <input type="checkbox" class="onboarding-check" data-step="5">
+                  <span class="onboarding-item-text">Establish client communication boundaries (asynchronous Slack, zero WhatsApp).</span>
+                </label>
+                <label class="onboarding-item">
+                  <input type="checkbox" class="onboarding-check" data-step="6">
+                  <span class="onboarding-item-text">Confirm milestone sign-off authority (single designated point-of-contact).</span>
+                </label>
+              </div>
+
+              <!-- Stage 3 -->
+              <div class="onboarding-stage-col">
+                <div class="onboarding-stage-header">
+                  <span class="onboarding-stage-title">Phase 3: Production Kickoff</span>
+                  <span class="onboarding-stage-badge">Hour 24 – 72</span>
+                </div>
+                <label class="onboarding-item">
+                  <input type="checkbox" class="onboarding-check" data-step="7">
+                  <span class="onboarding-item-text">Dispatch shared workspace invites (Figma, Notion, GitHub repository).</span>
+                </label>
+                <label class="onboarding-item">
+                  <input type="checkbox" class="onboarding-check" data-step="8">
+                  <span class="onboarding-item-text">Conduct 45-min sprint alignment session and publish locked milestone roadmap.</span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -5133,11 +5787,42 @@
         </div>
       </div>
       <div class="modal-body">
+        <!-- Live Invoice Customizer Controls (Print/Export Bar) -->
+        <div class="pdf-meta-controls">
+          <div class="pdf-control-item">
+            <label for="pdf-input-agency" class="pdf-control-label">Your Agency / Name</label>
+            <input type="text" id="pdf-input-agency" class="pdf-control-input" value="Studio Ledgerly">
+          </div>
+          <div class="pdf-control-item">
+            <label for="pdf-select-tax" class="pdf-control-label">Tax Rate / VAT / GST</label>
+            <select id="pdf-select-tax" class="pdf-control-select">
+              <option value="0">0% (Tax Exempt)</option>
+              <option value="5">5% (Sales Tax)</option>
+              <option value="10">10% (GST / State Tax)</option>
+              <option value="18">18% (Indian GST)</option>
+              <option value="20">20% (UK / EU VAT)</option>
+            </select>
+          </div>
+          <div class="pdf-control-item">
+            <label for="pdf-select-terms" class="pdf-control-label">Payment Terms</label>
+            <select id="pdf-select-terms" class="pdf-control-select">
+              <option value="Due upon receipt (Net 0)">Due upon receipt (Net 0)</option>
+              <option value="Due within 7 days (Net 7)">Net 7 Days</option>
+              <option value="Due within 14 days (Net 14)" selected>Net 14 Days</option>
+              <option value="Due within 30 days (Net 30)">Net 30 Days</option>
+            </select>
+          </div>
+          <div class="pdf-control-item">
+            <label for="pdf-input-taxid" class="pdf-control-label">Tax ID / GSTIN / VAT</label>
+            <input type="text" id="pdf-input-taxid" class="pdf-control-input" value="TAX-ID: US-94-284109">
+          </div>
+        </div>
+
         <div class="pdf-sheet" id="printable-invoice-sheet">
           <div class="pdf-top-row">
             <div>
-              <div class="pdf-agency-name">Studio Ledgerly</div>
-              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">742 Evergreen Terrace · Portland, OR</div>
+              <div class="pdf-agency-name" id="pdf-display-agency">Studio Ledgerly</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;" id="pdf-display-taxid">TAX-ID: US-94-284109 · 742 Evergreen Terrace · Portland, OR</div>
             </div>
             <div class="pdf-meta-col">
               <div class="pdf-invoice-number" id="pdf-invoice-num">#INV-1048</div>
@@ -5153,7 +5838,7 @@
             </div>
             <div>
               <div class="pdf-party-label">Payment Terms</div>
-              <div class="pdf-party-detail">Due upon receipt (Net 14)<br>Direct ACH or Stripe Credit Card</div>
+              <div class="pdf-party-detail" id="pdf-display-terms">Due within 14 days (Net 14)<br>Direct ACH or Stripe Credit Card</div>
             </div>
           </div>
 
@@ -5178,8 +5863,8 @@
                 <span id="pdf-subtotal-val">$4,800.00</span>
               </div>
               <div class="pdf-summary-row">
-                <span>Tax (0%)</span>
-                <span>$0.00</span>
+                <span id="pdf-tax-label">Tax (0%)</span>
+                <span id="pdf-tax-val">$0.00</span>
               </div>
               <div class="pdf-summary-row total">
                 <span>Total Due</span>
@@ -5188,7 +5873,7 @@
             </div>
           </div>
 
-          <div class="pdf-wire-note">
+          <div class="pdf-wire-note" id="pdf-wire-note">
             <strong>Wiring Instructions:</strong> Routing: 021000021 · Account: 9872-4410-1823 · Bank: Silicon Valley Commerce
           </div>
         </div>
@@ -5595,6 +6280,9 @@
 
         if (typeof calculateScopeCreep === 'function') calculateScopeCreep();
         if (typeof calculateTargetRate === 'function') calculateTargetRate();
+        if (typeof calculateProfitFirst === 'function') calculateProfitFirst();
+        if (typeof calculateFxLeakage === 'function') calculateFxLeakage();
+        if (typeof updateTaxDeductions === 'function') updateTaxDeductions();
         if (typeof renderActiveScript === 'function') renderActiveScript();
       }
 
@@ -5862,8 +6550,31 @@
         syncPdfSheet(items, total);
       }
 
+      const pdfInputAgency = document.getElementById('pdf-input-agency');
+      const pdfDisplayAgency = document.getElementById('pdf-display-agency');
+      const pdfSelectTax = document.getElementById('pdf-select-tax');
+      const pdfTaxLabel = document.getElementById('pdf-tax-label');
+      const pdfTaxVal = document.getElementById('pdf-tax-val');
+      const pdfSelectTerms = document.getElementById('pdf-select-terms');
+      const pdfDisplayTerms = document.getElementById('pdf-display-terms');
+      const pdfInputTaxid = document.getElementById('pdf-input-taxid');
+      const pdfDisplayTaxid = document.getElementById('pdf-display-taxid');
+
+      let currentPdfSubtotal = 0;
+      function updatePdfTotals() {
+        const taxRate = pdfSelectTax ? parseFloat(pdfSelectTax.value) || 0 : 0;
+        const taxAmount = currentPdfSubtotal * (taxRate / 100);
+        const finalTotal = currentPdfSubtotal + taxAmount;
+
+        if (pdfSubtotalVal) pdfSubtotalVal.textContent = formatMoney(currentPdfSubtotal);
+        if (pdfTaxLabel) pdfTaxLabel.textContent = 'Tax (' + taxRate + '%)';
+        if (pdfTaxVal) pdfTaxVal.textContent = formatMoney(taxAmount);
+        if (pdfTotalVal) pdfTotalVal.textContent = formatMoney(finalTotal);
+      }
+
       function syncPdfSheet(items, total) {
         if (!pdfItemsTbody) return;
+        currentPdfSubtotal = total;
         if (pdfBilledTo && invoiceClientName) {
           pdfBilledTo.textContent = invoiceClientName.textContent.trim() || 'Northwind Co.';
         }
@@ -5877,9 +6588,28 @@
           pdfItemsTbody.appendChild(tr);
         });
 
-        const formattedTotal = formatMoney(total);
-        if (pdfSubtotalVal) pdfSubtotalVal.textContent = formattedTotal;
-        if (pdfTotalVal) pdfTotalVal.textContent = formattedTotal;
+        updatePdfTotals();
+      }
+
+      if (pdfInputAgency && pdfDisplayAgency) {
+        pdfInputAgency.addEventListener('input', function () {
+          pdfDisplayAgency.textContent = pdfInputAgency.value.trim() || 'Studio Ledgerly';
+        });
+      }
+      if (pdfInputTaxid && pdfDisplayTaxid) {
+        pdfInputTaxid.addEventListener('input', function () {
+          pdfDisplayTaxid.textContent = pdfInputTaxid.value.trim();
+        });
+      }
+      if (pdfSelectTerms && pdfDisplayTerms) {
+        pdfSelectTerms.addEventListener('change', function () {
+          pdfDisplayTerms.innerHTML = escapeHtml(pdfSelectTerms.value) + '<br>Direct ACH or Stripe Credit Card';
+          const pdfInvoiceDate = document.getElementById('pdf-invoice-date');
+          if (pdfInvoiceDate) pdfInvoiceDate.textContent = 'Issue Date: Oct 24, 2026 · ' + pdfSelectTerms.value;
+        });
+      }
+      if (pdfSelectTax) {
+        pdfSelectTax.addEventListener('change', updatePdfTotals);
       }
 
       function escapeHtml(str) {
@@ -6318,8 +7048,124 @@
         calculateTargetRate();
       }
 
+      // Profit First Allocator Sliders
+      const btnCalcProfit = document.getElementById('btn-calc-mode-profit');
+      const btnCalcFx = document.getElementById('btn-calc-mode-fx');
+      const calcProfitView = document.getElementById('calc-profit-view');
+      const calcFxView = document.getElementById('calc-fx-view');
+
+      const sliderProfitRevenue = document.getElementById('slider-profit-revenue');
+      const sliderProfitOwnerPct = document.getElementById('slider-profit-owner-pct');
+      const sliderProfitTaxPct = document.getElementById('slider-profit-tax-pct');
+      const sliderProfitOpexPct = document.getElementById('slider-profit-opex-pct');
+
+      const valDisplayProfitRevenue = document.getElementById('val-display-profit-revenue');
+      const valDisplayProfitOwnerPct = document.getElementById('val-display-profit-owner-pct');
+      const valDisplayProfitTaxPct = document.getElementById('val-display-profit-tax-pct');
+      const valDisplayProfitOpexPct = document.getElementById('val-display-profit-opex-pct');
+
+      const pbarOwner = document.getElementById('pbar-owner');
+      const pbarTax = document.getElementById('pbar-tax');
+      const pbarOpex = document.getElementById('pbar-opex');
+      const pbarBuffer = document.getElementById('pbar-buffer');
+
+      const bucketValOwner = document.getElementById('bucket-val-owner');
+      const bucketValTax = document.getElementById('bucket-val-tax');
+      const bucketValOpex = document.getElementById('bucket-val-opex');
+      const bucketValBuffer = document.getElementById('bucket-val-buffer');
+
+      const pctBadgeOwner = document.getElementById('pct-badge-owner');
+      const pctBadgeTax = document.getElementById('pct-badge-tax');
+      const pctBadgeOpex = document.getElementById('pct-badge-opex');
+      const pctBadgeBuffer = document.getElementById('pct-badge-buffer');
+
+      function calculateProfitFirst() {
+        if (!sliderProfitRevenue || !sliderProfitOwnerPct || !sliderProfitTaxPct || !sliderProfitOpexPct) return;
+        const revenue = parseFloat(sliderProfitRevenue.value);
+        let ownerPct = parseFloat(sliderProfitOwnerPct.value);
+        let taxPct = parseFloat(sliderProfitTaxPct.value);
+        let opexPct = parseFloat(sliderProfitOpexPct.value);
+
+        if (ownerPct + taxPct + opexPct > 95) {
+          opexPct = Math.max(10, 95 - ownerPct - taxPct);
+          sliderProfitOpexPct.value = opexPct;
+        }
+        const bufferPct = Math.max(5, 100 - ownerPct - taxPct - opexPct);
+
+        if (valDisplayProfitRevenue) valDisplayProfitRevenue.textContent = activeCurrencySymbol + revenue.toLocaleString('en-US');
+        if (valDisplayProfitOwnerPct) valDisplayProfitOwnerPct.textContent = ownerPct + '%';
+        if (valDisplayProfitTaxPct) valDisplayProfitTaxPct.textContent = taxPct + '%';
+        if (valDisplayProfitOpexPct) valDisplayProfitOpexPct.textContent = opexPct + '%';
+
+        if (pbarOwner) pbarOwner.style.width = ownerPct + '%';
+        if (pbarTax) pbarTax.style.width = taxPct + '%';
+        if (pbarOpex) pbarOpex.style.width = opexPct + '%';
+        if (pbarBuffer) pbarBuffer.style.width = bufferPct + '%';
+
+        if (pctBadgeOwner) pctBadgeOwner.textContent = ownerPct + '%';
+        if (pctBadgeTax) pctBadgeTax.textContent = taxPct + '%';
+        if (pctBadgeOpex) pctBadgeOpex.textContent = opexPct + '%';
+        if (pctBadgeBuffer) pctBadgeBuffer.textContent = bufferPct + '%';
+
+        const ownerVal = Math.round(revenue * (ownerPct / 100));
+        const taxVal = Math.round(revenue * (taxPct / 100));
+        const opexVal = Math.round(revenue * (opexPct / 100));
+        const bufferVal = Math.round(revenue * (bufferPct / 100));
+
+        if (bucketValOwner) bucketValOwner.textContent = activeCurrencySymbol + ownerVal.toLocaleString('en-US');
+        if (bucketValTax) bucketValTax.textContent = activeCurrencySymbol + taxVal.toLocaleString('en-US');
+        if (bucketValOpex) bucketValOpex.textContent = activeCurrencySymbol + opexVal.toLocaleString('en-US');
+        if (bucketValBuffer) bucketValBuffer.textContent = activeCurrencySymbol + bufferVal.toLocaleString('en-US');
+      }
+
+      if (sliderProfitRevenue && sliderProfitOwnerPct && sliderProfitTaxPct && sliderProfitOpexPct) {
+        sliderProfitRevenue.addEventListener('input', calculateProfitFirst);
+        sliderProfitOwnerPct.addEventListener('input', calculateProfitFirst);
+        sliderProfitTaxPct.addEventListener('input', calculateProfitFirst);
+        sliderProfitOpexPct.addEventListener('input', calculateProfitFirst);
+        calculateProfitFirst();
+      }
+
+      // Global FX Leakage Sliders
+      const sliderFxVolume = document.getElementById('slider-fx-volume');
+      const sliderFxInvoices = document.getElementById('slider-fx-invoices');
+      const valDisplayFxVolume = document.getElementById('val-display-fx-volume');
+      const valDisplayFxInvoices = document.getElementById('val-display-fx-invoices');
+
+      const fxLossBank = document.getElementById('fx-loss-bank');
+      const fxCostLedgerly = document.getElementById('fx-cost-ledgerly');
+      const fxSavedAnnual = document.getElementById('fx-saved-annual');
+      const fxResultLeakageMonthly = document.getElementById('fx-result-leakage-monthly');
+      const fxResultSavingsAnnual = document.getElementById('fx-result-savings-annual');
+
+      function calculateFxLeakage() {
+        if (!sliderFxVolume || !sliderFxInvoices) return;
+        const volume = parseFloat(sliderFxVolume.value);
+        const invoices = parseFloat(sliderFxInvoices.value);
+
+        if (valDisplayFxVolume) valDisplayFxVolume.textContent = activeCurrencySymbol + volume.toLocaleString('en-US');
+        if (valDisplayFxInvoices) valDisplayFxInvoices.textContent = invoices + (invoices === 1 ? ' invoice' : ' invoices');
+
+        const bankLossMonthly = Math.round((volume * 0.035) + (invoices * 45));
+        const ledgerlyCostMonthly = Math.round(volume * 0.0045);
+        const netSavedMonthly = Math.max(0, bankLossMonthly - ledgerlyCostMonthly);
+        const netSavedAnnual = netSavedMonthly * 12;
+
+        if (fxLossBank) fxLossBank.textContent = '-' + activeCurrencySymbol + bankLossMonthly.toLocaleString('en-US') + ' / mo';
+        if (fxCostLedgerly) fxCostLedgerly.textContent = '-' + activeCurrencySymbol + ledgerlyCostMonthly.toLocaleString('en-US') + ' / mo';
+        if (fxSavedAnnual) fxSavedAnnual.textContent = '+' + activeCurrencySymbol + netSavedAnnual.toLocaleString('en-US') + ' / yr';
+        if (fxResultLeakageMonthly) fxResultLeakageMonthly.textContent = activeCurrencySymbol + netSavedMonthly.toLocaleString('en-US');
+        if (fxResultSavingsAnnual) fxResultSavingsAnnual.textContent = activeCurrencySymbol + netSavedAnnual.toLocaleString('en-US');
+      }
+
+      if (sliderFxVolume && sliderFxInvoices) {
+        sliderFxVolume.addEventListener('input', calculateFxLeakage);
+        sliderFxInvoices.addEventListener('input', calculateFxLeakage);
+        calculateFxLeakage();
+      }
+
       function setCalculatorMode(mode) {
-        const buttons = [btnCalcCashflow, btnCalcScope, btnCalcRate];
+        const buttons = [btnCalcCashflow, btnCalcScope, btnCalcRate, btnCalcProfit, btnCalcFx];
         buttons.forEach(function (btn) {
           if (!btn) return;
           btn.classList.remove('active');
@@ -6329,6 +7175,8 @@
         if (calcCashflowView) calcCashflowView.style.display = 'none';
         if (calcScopeView) calcScopeView.classList.remove('is-active');
         if (calcRateView) calcRateView.classList.remove('is-active');
+        if (calcProfitView) calcProfitView.classList.remove('is-active');
+        if (calcFxView) calcFxView.classList.remove('is-active');
 
         if (mode === 'cashflow') {
           if (btnCalcCashflow) {
@@ -6354,12 +7202,32 @@
             calcRateView.classList.add('is-active');
             calculateTargetRate();
           }
+        } else if (mode === 'profit') {
+          if (btnCalcProfit) {
+            btnCalcProfit.classList.add('active');
+            btnCalcProfit.setAttribute('aria-pressed', 'true');
+          }
+          if (calcProfitView) {
+            calcProfitView.classList.add('is-active');
+            calculateProfitFirst();
+          }
+        } else if (mode === 'fx') {
+          if (btnCalcFx) {
+            btnCalcFx.classList.add('active');
+            btnCalcFx.setAttribute('aria-pressed', 'true');
+          }
+          if (calcFxView) {
+            calcFxView.classList.add('is-active');
+            calculateFxLeakage();
+          }
         }
       }
 
       if (btnCalcCashflow) btnCalcCashflow.addEventListener('click', function () { setCalculatorMode('cashflow'); });
       if (btnCalcScope) btnCalcScope.addEventListener('click', function () { setCalculatorMode('scope'); });
       if (btnCalcRate) btnCalcRate.addEventListener('click', function () { setCalculatorMode('rate'); });
+      if (btnCalcProfit) btnCalcProfit.addEventListener('click', function () { setCalculatorMode('profit'); });
+      if (btnCalcFx) btnCalcFx.addEventListener('click', function () { setCalculatorMode('fx'); });
 
       // 18. Professional Playbook: Client Negotiation Scripts & Contract Clauses
       const playbookTabBtns = document.querySelectorAll('.playbook-tab-btn');
@@ -6509,6 +7377,88 @@
           if (targetPanel) targetPanel.classList.add('is-active');
         });
       });
+
+      // Tax Deductions Finder Logic
+      const taxDeductionChecks = document.querySelectorAll('.tax-deduction-check');
+      const taxTotalSavings = document.getElementById('tax-total-savings');
+      const taxTotalDeductions = document.getElementById('tax-total-deductions');
+
+      function updateTaxDeductions() {
+        let totalDeducted = 0;
+        taxDeductionChecks.forEach(function (cb) {
+          if (cb.checked) {
+            totalDeducted += parseFloat(cb.getAttribute('data-amount') || '0');
+          }
+        });
+
+        const estTaxSaved = Math.round(totalDeducted * 0.25);
+        if (taxTotalDeductions) taxTotalDeductions.textContent = activeCurrencySymbol + totalDeducted.toLocaleString('en-US');
+        if (taxTotalSavings) taxTotalSavings.textContent = activeCurrencySymbol + estTaxSaved.toLocaleString('en-US');
+      }
+
+      taxDeductionChecks.forEach(function (cb) {
+        cb.addEventListener('change', updateTaxDeductions);
+      });
+      updateTaxDeductions();
+
+      // 72-Hour Onboarding Protocol Logic with LocalStorage
+      const onboardingChecks = document.querySelectorAll('.onboarding-check');
+      const onboardingBarFill = document.getElementById('onboarding-bar-fill');
+      const onboardingCountLabel = document.getElementById('onboarding-count-label');
+      const btnResetOnboarding = document.getElementById('btn-reset-onboarding');
+
+      function loadOnboardingState() {
+        try {
+          const saved = JSON.parse(localStorage.getItem('ledgerly_onboarding') || '{}');
+          onboardingChecks.forEach(function (cb) {
+            const step = cb.getAttribute('data-step');
+            if (saved[step] !== undefined) {
+              cb.checked = Boolean(saved[step]);
+            }
+            const parentLabel = cb.closest('.onboarding-item');
+            if (parentLabel) {
+              parentLabel.classList.toggle('is-done', cb.checked);
+            }
+          });
+        } catch (e) {}
+        updateOnboardingUI();
+      }
+
+      function updateOnboardingUI() {
+        const total = onboardingChecks.length;
+        let checkedCount = 0;
+        const stateToSave = {};
+
+        onboardingChecks.forEach(function (cb) {
+          const step = cb.getAttribute('data-step');
+          if (cb.checked) checkedCount++;
+          stateToSave[step] = cb.checked;
+          const parentLabel = cb.closest('.onboarding-item');
+          if (parentLabel) {
+            parentLabel.classList.toggle('is-done', cb.checked);
+          }
+        });
+
+        try {
+          localStorage.setItem('ledgerly_onboarding', JSON.stringify(stateToSave));
+        } catch (e) {}
+
+        const pct = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+        if (onboardingBarFill) onboardingBarFill.style.width = pct + '%';
+        if (onboardingCountLabel) onboardingCountLabel.textContent = checkedCount + ' / ' + total + ' Done';
+      }
+
+      onboardingChecks.forEach(function (cb) {
+        cb.addEventListener('change', updateOnboardingUI);
+      });
+
+      if (btnResetOnboarding) {
+        btnResetOnboarding.addEventListener('click', function () {
+          onboardingChecks.forEach(function (cb) { cb.checked = false; });
+          updateOnboardingUI();
+        });
+      }
+      loadOnboardingState();
 
       // 19. Keyboard Shortcuts Modal & Global Key Listeners
       const shortcutsModalBackdrop = document.getElementById('shortcuts-modal-backdrop');
