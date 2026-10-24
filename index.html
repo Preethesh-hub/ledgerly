@@ -3313,6 +3313,389 @@
         transform: none !important;
       }
     }
+
+    /* =============================================================
+       PROFESSIONAL PLAYBOOK & EXTENDED CALCULATOR STYLING
+       ============================================================= */
+    .calc-rate-view {
+      display: none;
+    }
+    .calc-rate-view.is-active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      animation: fadeInScale 0.35s ease;
+    }
+    @media (max-width: 900px) {
+      .calc-rate-view.is-active {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .playbook-tabs-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .playbook-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .playbook-tab-btn:hover {
+      border-color: var(--accent-green);
+      color: var(--text-ink);
+      transform: translateY(-1px);
+    }
+
+    .playbook-tab-btn.active {
+      background: var(--accent-green);
+      color: #ffffff;
+      border-color: var(--accent-green);
+      box-shadow: 0 4px 14px rgba(15, 93, 74, 0.25);
+    }
+
+    .playbook-panel {
+      display: none;
+    }
+
+    .playbook-panel.is-active {
+      display: block;
+      animation: fadeInScale 0.35s ease;
+    }
+
+    /* Scripts Layout */
+    .playbook-scripts-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .playbook-scripts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .scripts-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .script-menu-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      text-align: left;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .script-menu-item:hover {
+      border-color: var(--accent-green);
+      background: var(--bg-card-subtle);
+      transform: translateX(3px);
+    }
+
+    .script-menu-item.active {
+      border-color: var(--accent-green);
+      background: var(--accent-green-subtle);
+      box-shadow: 0 2px 8px rgba(15, 93, 74, 0.12);
+    }
+
+    .script-item-category {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-green);
+    }
+
+    .script-item-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-ink);
+    }
+
+    .script-preview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 32px;
+      position: relative;
+    }
+
+    .script-vars-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .script-var-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .script-var-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .script-var-input {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-warm);
+      background: var(--bg-card-subtle);
+      color: var(--text-ink);
+      transition: border var(--transition-base);
+    }
+
+    .script-var-input:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(15, 93, 74, 0.12);
+    }
+
+    .script-content-box {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 20px;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-ink);
+      position: relative;
+    }
+
+    .script-subject-line {
+      font-weight: 600;
+      color: var(--text-ink);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--border-warm);
+    }
+
+    .script-body-text {
+      white-space: pre-line;
+      color: var(--text-secondary);
+    }
+
+    .script-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .script-tactical-tip {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Clauses Grid */
+    .clauses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .clauses-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .clause-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-base);
+    }
+
+    .clause-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(15, 93, 74, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .clause-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+
+    .clause-title {
+      font-size: 1.15rem;
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--text-ink);
+    }
+
+    .clause-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-green-subtle);
+      color: var(--accent-green);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .clause-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .clause-text-box {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-warm);
+      border-left: 3px solid var(--accent-green);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      color: var(--text-ink);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+    }
+
+    .clause-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* SOW Matrix Grid */
+    .sow-matrix-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 32px;
+    }
+
+    .sow-table-wrap {
+      overflow-x: auto;
+    }
+
+    .sow-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .sow-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--border-warm);
+    }
+
+    .sow-table td {
+      padding: 14px 16px;
+      font-size: 0.92rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-ink);
+      vertical-align: top;
+    }
+
+    .sow-table tr:hover td {
+      background: var(--bg-card-subtle);
+    }
+
+    .sow-badge-included {
+      color: var(--accent-green);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sow-badge-billable {
+      color: #b7791f;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-copy-script, .btn-copy-clause {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--accent-green);
+      color: #ffffff;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .btn-copy-script:hover, .btn-copy-clause:hover {
+      background: var(--accent-green-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy-script.copied, .btn-copy-clause.copied {
+      background: #107050;
+    }
   </style>
 </head>
 <body>
@@ -3343,6 +3726,7 @@
           <li><a href="#how-it-works" class="nav-link">How it works</a></li>
           <li><a href="#features" class="nav-link">Features</a></li>
           <li><a href="#calculator" class="nav-link">Calculator</a></li>
+          <li><a href="#playbook" class="nav-link">Playbook</a></li>
           <li><a href="#pricing" class="nav-link">Pricing</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
           <li><a href="#customers" class="nav-link">Customers</a></li>
@@ -3898,6 +4282,9 @@
             <button type="button" class="calc-mode-btn" id="btn-calc-mode-scope" aria-pressed="false">
               🛡 Scope Creep Recovery
             </button>
+            <button type="button" class="calc-mode-btn" id="btn-calc-mode-rate" aria-pressed="false">
+              🎯 Target Rate Calculator
+            </button>
           </div>
         </div>
 
@@ -4002,6 +4389,314 @@
               <p class="calculator-disclaimer">
                 *Recovered via Ledgerly's 1-click change-order approvals before team revision work begins.
               </p>
+            </div>
+          </div>
+
+          <!-- View 3: Target Rate Reverse Calculator -->
+          <div class="calc-rate-view" id="calc-rate-view">
+            <div class="sliders-column">
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-target-income" class="slider-label">Desired annual take-home pay</label>
+                  <span class="slider-val-badge" id="val-display-target-income">$120,000</span>
+                </div>
+                <input type="range" id="slider-target-income" class="range-input" min="40000" max="300000" value="120000" step="5000">
+                <span class="slider-subnote">Net personal income before taxes</span>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-billable-weeks" class="slider-label">Working weeks per year</label>
+                  <span class="slider-val-badge" id="val-display-billable-weeks">46 weeks</span>
+                </div>
+                <input type="range" id="slider-billable-weeks" class="range-input" min="35" max="50" value="46" step="1">
+                <span class="slider-subnote">Leaves 6 weeks for vacations, sick days &amp; holidays</span>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-billable-hours" class="slider-label">Billable client hours / week</label>
+                  <span class="slider-val-badge" id="val-display-billable-hours">25 hrs</span>
+                </div>
+                <input type="range" id="slider-billable-hours" class="range-input" min="10" max="40" value="25" step="1">
+                <span class="slider-subnote">Excludes admin, sales, emails &amp; non-billable overhead</span>
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header-row">
+                  <label for="slider-tax-overhead" class="slider-label">Taxes &amp; business expenses buffer</label>
+                  <span class="slider-val-badge" id="val-display-tax-overhead">30%</span>
+                </div>
+                <input type="range" id="slider-tax-overhead" class="range-input" min="15" max="50" value="30" step="5">
+                <span class="slider-subnote">Software, insurance, accounting, self-employment tax</span>
+              </div>
+            </div>
+
+            <div class="results-column">
+              <div class="result-metric-card">
+                <div class="result-metric-num" id="calc-result-rate-hourly">$149</div>
+                <div class="result-metric-label">Minimum hourly rate floor</div>
+              </div>
+
+              <div class="result-metric-card">
+                <div class="result-metric-num" id="calc-result-rate-daily">$1,192</div>
+                <div class="result-metric-label">Recommended standard day rate (8h)</div>
+              </div>
+
+              <div class="result-metric-card">
+                <div class="result-metric-num" id="calc-result-rate-gross" style="font-size: 1.55rem;">$171,428</div>
+                <div class="result-metric-label">Annual gross billings required</div>
+              </div>
+
+              <p class="calculator-disclaimer">
+                *Formula: (Take-Home ÷ (1 - Overhead%)) ÷ (Weeks × Billable Hours). Never calculate freelance pricing using 40 billable hrs/wk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         PROFESSIONAL PLAYBOOK: SCRIPTS & CONTRACT CLAUSES
+         ============================================================= -->
+    <section class="section" id="playbook">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="eyebrow">Client Playbook &amp; Negotiation</div>
+          <h2 class="section-title">Master <em>awkward</em> client conversations.</h2>
+          <p class="section-description">
+            Field-tested email scripts, bulletproof contract safety clauses, and scope boundary frameworks for independent consultants and boutique agencies.
+          </p>
+        </div>
+
+        <!-- Playbook Category Tabs -->
+        <div class="playbook-tabs-nav reveal" role="tablist" aria-label="Playbook resource tabs">
+          <button type="button" class="playbook-tab-btn active" id="tab-playbook-scripts" role="tab" aria-selected="true" aria-controls="panel-playbook-scripts">
+            <span>📧</span> Awkward Email Scripts
+          </button>
+          <button type="button" class="playbook-tab-btn" id="tab-playbook-clauses" role="tab" aria-selected="false" aria-controls="panel-playbook-clauses">
+            <span>🛡️</span> Contract Safety Clauses
+          </button>
+          <button type="button" class="playbook-tab-btn" id="tab-playbook-sow" role="tab" aria-selected="false" aria-controls="panel-playbook-sow">
+            <span>📋</span> Scope Boundary Matrix
+          </button>
+        </div>
+
+        <!-- Panel 1: Awkward Email Scripts -->
+        <div class="playbook-panel is-active" id="panel-playbook-scripts" role="tabpanel" aria-labelledby="tab-playbook-scripts">
+          <div class="playbook-scripts-grid">
+            <!-- Sidebar selector of scripts -->
+            <div class="scripts-menu" role="menu" aria-label="Select an email script scenario">
+              <button type="button" class="script-menu-item active" data-script-id="late-soft" role="menuitem">
+                <span class="script-item-category">Late Payment · 3 Days</span>
+                <span class="script-item-title">Gentle &amp; Polite Check-in</span>
+              </button>
+              <button type="button" class="script-menu-item" data-script-id="late-firm" role="menuitem">
+                <span class="script-item-category">Late Payment · 14 Days</span>
+                <span class="script-item-title">Direct &amp; Firm Accounting Reminder</span>
+              </button>
+              <button type="button" class="script-menu-item" data-script-id="late-halt" role="menuitem">
+                <span class="script-item-category">Late Payment · 30 Days</span>
+                <span class="script-item-title">Work Pause &amp; Escrow Notice</span>
+              </button>
+              <button type="button" class="script-menu-item" data-script-id="rate-increase" role="menuitem">
+                <span class="script-item-category">Rate Adjustment</span>
+                <span class="script-item-title">Annual 15–20% Client Rate Bump</span>
+              </button>
+              <button type="button" class="script-menu-item" data-script-id="scope-pushback" role="menuitem">
+                <span class="script-item-category">Scope Boundary</span>
+                <span class="script-item-title">The "Yes, And..." Change Order</span>
+              </button>
+              <button type="button" class="script-menu-item" data-script-id="upfront-deposit" role="menuitem">
+                <span class="script-item-category">Project Kickoff</span>
+                <span class="script-item-title">Enforcing 50% Upfront Deposit</span>
+              </button>
+            </div>
+
+            <!-- Preview & Dynamic Customizer Box -->
+            <div class="script-preview-card">
+              <!-- Live variable customizer -->
+              <div class="script-vars-bar">
+                <div class="script-var-field">
+                  <label for="var-client-name" class="script-var-label">Client Name</label>
+                  <input type="text" id="var-client-name" class="script-var-input" value="Northwind Co." placeholder="e.g. Acme Corp">
+                </div>
+                <div class="script-var-field">
+                  <label for="var-contact-name" class="script-var-label">Contact Person</label>
+                  <input type="text" id="var-contact-name" class="script-var-input" value="Sarah" placeholder="e.g. John">
+                </div>
+                <div class="script-var-field">
+                  <label for="var-invoice-num" class="script-var-label">Invoice Number</label>
+                  <input type="text" id="var-invoice-num" class="script-var-input" value="#INV-1048" placeholder="e.g. #INV-1048">
+                </div>
+                <div class="script-var-field">
+                  <label for="var-invoice-amount" class="script-var-label">Amount Due</label>
+                  <input type="text" id="var-invoice-amount" class="script-var-input" value="$4,800.00" placeholder="e.g. $4,800.00">
+                </div>
+              </div>
+
+              <!-- Output Text Area -->
+              <div class="script-content-box">
+                <div class="script-subject-line" id="script-rendered-subject">
+                  Subject: Quick check-in regarding Invoice #INV-1048 (Northwind Co.)
+                </div>
+                <div class="script-body-text" id="script-rendered-body">
+                  Hi Sarah,
+
+                  Hope you’re having a great week!
+
+                  Just wanted to drop a quick note regarding Invoice #INV-1048 ($4,800.00) issued for the recent deliverable phase, which was due on Oct 24. 
+
+                  Could you check with your accounts team to verify if this is queued for processing? A live copy and direct payment link can be accessed here: [Insert Ledgerly Client Link].
+
+                  Let me know if you need any updated PO details from our end.
+
+                  Best regards,
+                  Your Name / Studio
+                </div>
+              </div>
+
+              <div class="script-card-footer">
+                <div class="script-tactical-tip" id="script-tactical-tip">
+                  💡 <strong>Tip:</strong> Always include the direct 1-click payment link and PDF attachment so the client doesn't have to search their inbox.
+                </div>
+                <button type="button" class="btn-copy-script" id="btn-copy-active-script" aria-label="Copy script to clipboard">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy Script</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Contract Safety Clauses -->
+        <div class="playbook-panel" id="panel-playbook-clauses" role="tabpanel" aria-labelledby="tab-playbook-clauses">
+          <div class="clauses-grid">
+            <!-- Clause 1 -->
+            <div class="clause-card">
+              <div>
+                <div class="clause-header">
+                  <h3 class="clause-title">Late Payment &amp; Compound Interest</h3>
+                  <span class="clause-badge">Cashflow Protection</span>
+                </div>
+                <p class="clause-desc">
+                  Legally establishes that invoices exceeding agreed payment terms automatically accrue late penalties, eliminating awkward negotiation when payments stall.
+                </p>
+                <div class="clause-text-box" id="clause-text-late">"Invoices unpaid after 14 calendar days from the due date shall accrue a late fee of 1.5% compounding per month (or the maximum allowed by applicable law) on the outstanding balance, plus reasonable costs and legal fees incurred in collection."</div>
+              </div>
+              <div class="clause-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Standard commercial term</span>
+                <button type="button" class="btn-copy-clause" data-target-clause="clause-text-late">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy Clause</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Clause 2 -->
+            <div class="clause-card">
+              <div>
+                <div class="clause-header">
+                  <h3 class="clause-title">IP Transfer Conditioned Upon Full Payment</h3>
+                  <span class="clause-badge">Asset Safety</span>
+                </div>
+                <p class="clause-desc">
+                  Protects intellectual property. The client does not legally own deliverables, designs, code, or brand files until the final invoice clears your bank account.
+                </p>
+                <div class="clause-text-box" id="clause-text-ip">"All intellectual property rights, licenses, and ownership in deliverables created under this Statement of Work remain the exclusive property of [Agency/Contractor] until all associated invoices and fees are paid in full without offset or delay."</div>
+              </div>
+              <div class="clause-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Critical for design &amp; dev</span>
+                <button type="button" class="btn-copy-clause" data-target-clause="clause-text-ip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy Clause</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Clause 3 -->
+            <div class="clause-card">
+              <div>
+                <div class="clause-header">
+                  <h3 class="clause-title">Client Inactivity &amp; Schedule Reset</h3>
+                  <span class="clause-badge">Timeline Control</span>
+                </div>
+                <p class="clause-desc">
+                  Prevents clients from disappearing for weeks and then demanding immediate turnaround when they resurface, which disrupts other paying client timelines.
+                </p>
+                <div class="clause-text-box" id="clause-text-inactivity">"Client agrees to provide required feedback or assets within 5 business days of request. Inactivity exceeding 10 business days will place the project on standby; rescheduling will be subject to agency resource availability and may incur a 15% restart administrative fee."</div>
+              </div>
+              <div class="clause-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Protects agency capacity</span>
+                <button type="button" class="btn-copy-clause" data-target-clause="clause-text-inactivity">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy Clause</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Clause 4 -->
+            <div class="clause-card">
+              <div>
+                <div class="clause-header">
+                  <h3 class="clause-title">Early Termination &amp; Kill Fee</h3>
+                  <span class="clause-badge">Contract Shield</span>
+                </div>
+                <p class="clause-desc">
+                  Guarantees that if a client suddenly cancels or halts an initiative due to internal politics or budget cuts, your committed capacity is fully compensated.
+                </p>
+                <div class="clause-text-box" id="clause-text-kill">"In the event of client termination without cause, client shall remit immediate payment for 100% of hours and deliverables completed to date, plus a non-refundable cancellation fee equal to 25% of the remaining contracted project value to compensate for reserved capacity."</div>
+              </div>
+              <div class="clause-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Eliminates zero-dollar cancellations</span>
+                <button type="button" class="btn-copy-clause" data-target-clause="clause-text-kill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy Clause</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: SOW Boundary Matrix -->
+        <div class="playbook-panel" id="panel-playbook-sow" role="tabpanel" aria-labelledby="tab-playbook-sow">
+          <div class="sow-matrix-card">
+            <h3 style="font-size: 1.25rem; font-family: var(--font-serif); margin-bottom: 8px;">The Scope Boundary Matrix</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Clear deliverable distinctions to paste directly into your SOW proposals to stop scope creep before it starts.</p>
+
+            <div class="sow-table-wrap">
+              <table class="sow-table" aria-label="Deliverable scope inclusions and add-on classifications">
+                <thead>
+                  <tr>
+                    <th>Deliverable Area</th>
+                    <th>Included in Agreed Baseline</th>
+                    <th>Separate Billable Change Order</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Creative Revisions</strong></td>
+                    <td><span class="sow-badge-included">✓ Included</span> Up to 2 consolidate rounds of written feedback within original brief scope.</td>
+                    <td><span class="sow-badge-billable">⚡ Billable</span> Conceptual pivots, contradictory stakeholder changes, or 3+ revision cycles.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Asset Deliverables</strong></td>
+                    <td><span class="sow-badge-included">✓ Included</span> Web-ready optimized exports (SVG, WebP, PNG, PDF formats).</td>
+                    <td><span class="sow-badge-billable">⚡ Billable</span> Raw unflattened Figma components, layered CAD files, or custom font licensing.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Third-Party Integrations</strong></td>
+                    <td><span class="sow-badge-included">✓ Included</span> Standard documented webhooks &amp; Stripe/PayPal payment checkout flows.</td>
+                    <td><span class="sow-badge-billable">⚡ Billable</span> Custom legacy ERP synchronization (Salesforce, SAP, NetSuite) or undocumented APIs.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Post-Launch Warranty</strong></td>
+                    <td><span class="sow-badge-included">✓ Included</span> 14 days of bug-fixing directly related to deliverables delivered in scope.</td>
+                    <td><span class="sow-badge-billable">⚡ Billable</span> Content additions, new browser updates released post-launch, or staff training sprints.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -4365,6 +5060,7 @@
             <li><a href="#how-it-works" class="footer-link">How it works</a></li>
             <li><a href="#features" class="footer-link">Features</a></li>
             <li><a href="#calculator" class="footer-link">Savings Calculator</a></li>
+            <li><a href="#playbook" class="footer-link">Client Playbook</a></li>
             <li><a href="#pricing" class="footer-link">Pricing</a></li>
             <li><a href="#faq" class="footer-link">FAQ</a></li>
           </ul>
@@ -4539,6 +5235,10 @@
           <div class="shortcut-row">
             <span class="shortcut-desc">Close Active Modal Dialog</span>
             <div class="shortcut-keys"><span class="shortcut-kbd">Esc</span></div>
+          </div>
+          <div class="shortcut-row">
+            <span class="shortcut-desc">Jump to Client Playbook</span>
+            <div class="shortcut-keys"><span class="shortcut-kbd">K</span></div>
           </div>
           <div class="shortcut-row">
             <span class="shortcut-desc">Open Shortcuts Cheatsheet</span>
@@ -4892,6 +5592,10 @@
         if (typeof window.updateHeroCurrencySymbol === 'function') {
           window.updateHeroCurrencySymbol(p.symbol);
         }
+
+        if (typeof calculateScopeCreep === 'function') calculateScopeCreep();
+        if (typeof calculateTargetRate === 'function') calculateTargetRate();
+        if (typeof renderActiveScript === 'function') renderActiveScript();
       }
 
       function updatePricingMode(isAnnual) {
@@ -5528,22 +6232,36 @@
         });
       }
 
-      // 17. Scope Creep Recovery Calculator
+      // 17. Scope Creep & Target Rate Recovery Calculators
       const btnCalcCashflow = document.getElementById('btn-calc-mode-cashflow');
       const btnCalcScope = document.getElementById('btn-calc-mode-scope');
+      const btnCalcRate = document.getElementById('btn-calc-mode-rate');
       const calcCashflowView = document.getElementById('calc-cashflow-view');
       const calcScopeView = document.getElementById('calc-scope-view');
+      const calcRateView = document.getElementById('calc-rate-view');
 
+      // Scope creep sliders
       const sliderScopeHours = document.getElementById('slider-scope-hours');
       const sliderScopeRate = document.getElementById('slider-scope-rate');
       const sliderScopeClients = document.getElementById('slider-scope-clients');
-
       const valDisplayScopeHours = document.getElementById('val-display-scope-hours');
       const valDisplayScopeRate = document.getElementById('val-display-scope-rate');
       const valDisplayScopeClients = document.getElementById('val-display-scope-clients');
-
       const calcResultScopeMonthly = document.getElementById('calc-result-scope-monthly');
       const calcResultScopeAnnual = document.getElementById('calc-result-scope-annual');
+
+      // Target rate sliders
+      const sliderTargetIncome = document.getElementById('slider-target-income');
+      const sliderBillableWeeks = document.getElementById('slider-billable-weeks');
+      const sliderBillableHours = document.getElementById('slider-billable-hours');
+      const sliderTaxOverhead = document.getElementById('slider-tax-overhead');
+      const valDisplayTargetIncome = document.getElementById('val-display-target-income');
+      const valDisplayBillableWeeks = document.getElementById('val-display-billable-weeks');
+      const valDisplayBillableHours = document.getElementById('val-display-billable-hours');
+      const valDisplayTaxOverhead = document.getElementById('val-display-tax-overhead');
+      const calcResultRateHourly = document.getElementById('calc-result-rate-hourly');
+      const calcResultRateDaily = document.getElementById('calc-result-rate-daily');
+      const calcResultRateGross = document.getElementById('calc-result-rate-gross');
 
       function calculateScopeCreep() {
         if (!sliderScopeHours || !sliderScopeRate || !sliderScopeClients) return;
@@ -5562,6 +6280,29 @@
         if (calcResultScopeAnnual) calcResultScopeAnnual.textContent = activeCurrencySymbol + annualRecovered.toLocaleString('en-US');
       }
 
+      function calculateTargetRate() {
+        if (!sliderTargetIncome || !sliderBillableWeeks || !sliderBillableHours || !sliderTaxOverhead) return;
+        const takeHome = parseFloat(sliderTargetIncome.value);
+        const weeks = parseFloat(sliderBillableWeeks.value);
+        const hoursPerWeek = parseFloat(sliderBillableHours.value);
+        const overheadPct = parseFloat(sliderTaxOverhead.value) / 100;
+
+        if (valDisplayTargetIncome) valDisplayTargetIncome.textContent = activeCurrencySymbol + takeHome.toLocaleString('en-US');
+        if (valDisplayBillableWeeks) valDisplayBillableWeeks.textContent = weeks + ' weeks';
+        if (valDisplayBillableHours) valDisplayBillableHours.textContent = hoursPerWeek + ' hrs';
+        if (valDisplayTaxOverhead) valDisplayTaxOverhead.textContent = Math.round(overheadPct * 100) + '%';
+
+        // Required gross business revenue to yield take-home after overhead and taxes
+        const grossRequired = Math.round(takeHome / (1 - overheadPct));
+        const totalBillableHours = weeks * hoursPerWeek;
+        const hourlyFloor = totalBillableHours > 0 ? Math.round(grossRequired / totalBillableHours) : 0;
+        const dayRate = hourlyFloor * 8;
+
+        if (calcResultRateHourly) calcResultRateHourly.textContent = activeCurrencySymbol + hourlyFloor.toLocaleString('en-US');
+        if (calcResultRateDaily) calcResultRateDaily.textContent = activeCurrencySymbol + dayRate.toLocaleString('en-US');
+        if (calcResultRateGross) calcResultRateGross.textContent = activeCurrencySymbol + grossRequired.toLocaleString('en-US');
+      }
+
       if (sliderScopeHours && sliderScopeRate && sliderScopeClients) {
         sliderScopeHours.addEventListener('input', calculateScopeCreep);
         sliderScopeRate.addEventListener('input', calculateScopeCreep);
@@ -5569,32 +6310,207 @@
         calculateScopeCreep();
       }
 
-      if (btnCalcCashflow && btnCalcScope) {
-        btnCalcCashflow.addEventListener('click', function () {
-          btnCalcCashflow.classList.add('active');
-          btnCalcCashflow.setAttribute('aria-pressed', 'true');
-          btnCalcScope.classList.remove('active');
-          btnCalcScope.setAttribute('aria-pressed', 'false');
+      if (sliderTargetIncome && sliderBillableWeeks && sliderBillableHours && sliderTaxOverhead) {
+        sliderTargetIncome.addEventListener('input', calculateTargetRate);
+        sliderBillableWeeks.addEventListener('input', calculateTargetRate);
+        sliderBillableHours.addEventListener('input', calculateTargetRate);
+        sliderTaxOverhead.addEventListener('input', calculateTargetRate);
+        calculateTargetRate();
+      }
 
-          if (calcCashflowView) calcCashflowView.style.display = 'contents';
-          if (calcScopeView) calcScopeView.classList.remove('is-active');
+      function setCalculatorMode(mode) {
+        const buttons = [btnCalcCashflow, btnCalcScope, btnCalcRate];
+        buttons.forEach(function (btn) {
+          if (!btn) return;
+          btn.classList.remove('active');
+          btn.setAttribute('aria-pressed', 'false');
         });
 
-        btnCalcScope.addEventListener('click', function () {
-          btnCalcScope.classList.add('active');
-          btnCalcScope.setAttribute('aria-pressed', 'true');
-          btnCalcCashflow.classList.remove('active');
-          btnCalcCashflow.setAttribute('aria-pressed', 'false');
+        if (calcCashflowView) calcCashflowView.style.display = 'none';
+        if (calcScopeView) calcScopeView.classList.remove('is-active');
+        if (calcRateView) calcRateView.classList.remove('is-active');
 
-          if (calcCashflowView) calcCashflowView.style.display = 'none';
+        if (mode === 'cashflow') {
+          if (btnCalcCashflow) {
+            btnCalcCashflow.classList.add('active');
+            btnCalcCashflow.setAttribute('aria-pressed', 'true');
+          }
+          if (calcCashflowView) calcCashflowView.style.display = 'contents';
+        } else if (mode === 'scope') {
+          if (btnCalcScope) {
+            btnCalcScope.classList.add('active');
+            btnCalcScope.setAttribute('aria-pressed', 'true');
+          }
           if (calcScopeView) {
             calcScopeView.classList.add('is-active');
             calculateScopeCreep();
           }
+        } else if (mode === 'rate') {
+          if (btnCalcRate) {
+            btnCalcRate.classList.add('active');
+            btnCalcRate.setAttribute('aria-pressed', 'true');
+          }
+          if (calcRateView) {
+            calcRateView.classList.add('is-active');
+            calculateTargetRate();
+          }
+        }
+      }
+
+      if (btnCalcCashflow) btnCalcCashflow.addEventListener('click', function () { setCalculatorMode('cashflow'); });
+      if (btnCalcScope) btnCalcScope.addEventListener('click', function () { setCalculatorMode('scope'); });
+      if (btnCalcRate) btnCalcRate.addEventListener('click', function () { setCalculatorMode('rate'); });
+
+      // 18. Professional Playbook: Client Negotiation Scripts & Contract Clauses
+      const playbookTabBtns = document.querySelectorAll('.playbook-tab-btn');
+      const playbookPanels = document.querySelectorAll('.playbook-panel');
+      const scriptMenuItems = document.querySelectorAll('.script-menu-item');
+
+      const varClientName = document.getElementById('var-client-name');
+      const varContactName = document.getElementById('var-contact-name');
+      const varInvoiceNum = document.getElementById('var-invoice-num');
+      const varInvoiceAmount = document.getElementById('var-invoice-amount');
+
+      const scriptRenderedSubject = document.getElementById('script-rendered-subject');
+      const scriptRenderedBody = document.getElementById('script-rendered-body');
+      const scriptTacticalTip = document.getElementById('script-tactical-tip');
+      const btnCopyActiveScript = document.getElementById('btn-copy-active-script');
+
+      // Email Script Templates Database
+      const scriptsDb = {
+        'late-soft': {
+          subject: 'Quick check-in regarding Invoice {INVOICE_NUM} ({CLIENT_NAME})',
+          body: 'Hi {CONTACT_NAME},\n\nHope you’re having a productive week!\n\nJust wanted to drop a friendly note regarding Invoice {INVOICE_NUM} ({INVOICE_AMOUNT}) issued for the recent milestone deliverables, which was due a few days ago.\n\nCould you check with your accounts payable team to confirm if this is scheduled for processing? You can view the live invoice and pay securely via bank transfer or card here: [Ledgerly Payment Link].\n\nLet me know if you need any updated purchase order or vendor documentation from our side.\n\nBest regards,\nYour Name / Studio',
+          tip: '💡 <strong>Tip:</strong> Keep the first follow-up soft and casual. Assume the delay is an innocent oversight rather than non-payment.'
+        },
+        'late-firm': {
+          subject: 'Follow-up: Overdue Invoice {INVOICE_NUM} - {CLIENT_NAME}',
+          body: 'Hi {CONTACT_NAME},\n\nI’m following up on our previous note regarding Invoice {INVOICE_NUM} for {INVOICE_AMOUNT}, which is now 14 days past due.\n\nAs our terms specify Net 14 payment, please let us know the exact date when we can expect the transfer to clear. If your finance department requires another copy of our W-9 or wiring instructions, please find them attached.\n\nDirect digital payment can be completed in one click here: [Ledgerly Payment Link].\n\nThank you for your prompt attention to getting our account up to date.\n\nSincerely,\nYour Name / Studio',
+          tip: '💡 <strong>Tip:</strong> Be clear, polite, and direct. Asking for an "exact scheduled date" forces their finance desk to look up the queue.'
+        },
+        'late-halt': {
+          subject: 'ACTION REQUIRED: Notice of Pending Work Pause on {CLIENT_NAME} (Inv {INVOICE_NUM})',
+          body: 'Dear {CONTACT_NAME},\n\nWe have reached out several times regarding outstanding Invoice {INVOICE_NUM} ({INVOICE_AMOUNT}), which is now 30 days overdue.\n\nPer Section 4 of our Client Agreement, ongoing project sprints and file releases are subject to accounts being in good standing. In order to avoid pausing scheduled sprint work starting this Friday, we kindly request that this balance be cleared within the next 48 hours.\n\nYou can settle the invoice immediately here: [Ledgerly Payment Link].\n\nWe value our collaboration on {CLIENT_NAME} and look forward to getting back on track without disruption.\n\nRegards,\nYour Name / Studio',
+          tip: '💡 <strong>Tip:</strong> Don\'t threaten anger. Reference the contract clause objectively and tie payment to sprint delivery dates.'
+        },
+        'rate-increase': {
+          subject: 'Upcoming service & rate adjustment update for {CLIENT_NAME}',
+          body: 'Hi {CONTACT_NAME},\n\nIt’s been a pleasure partnering with the {CLIENT_NAME} team over the past year. We’re proud of the milestones we’ve delivered together!\n\nAs we plan our capacity and ongoing toolchain investments for the coming year, our studio is updating its standard retainer and project rates effective next month. For {CLIENT_NAME}, this will adjust our hourly rate to [New Rate] (or our monthly retainer to [New Amount]).\n\nBecause we value our ongoing relationship, all existing agreements and active deliverables currently underway will remain locked at your current rate through [Date].\n\nHappy to jump on a quick call if you’d like to review our roadmap for the next quarter!\n\nWarmly,\nYour Name / Studio',
+          tip: '💡 <strong>Tip:</strong> Announce rate bumps 30–60 days in advance and emphasize that active work remains grandfathered.'
+        },
+        'scope-pushback': {
+          subject: 'Scope & estimate update for {CLIENT_NAME} requested additions',
+          body: 'Hi {CONTACT_NAME},\n\nThanks for sending over these new feature ideas! They make a lot of sense and will definitely add value to the project.\n\nBecause this falls outside our original Statement of Work baseline for Invoice {INVOICE_NUM}, I’ve drafted a brief change-order scope estimate. We can deliver this as a Phase 2 sprint for approximately {INVOICE_AMOUNT} (or [Estimated Hours] hours).\n\nIf you’d like us to proceed with this addition now, we can either:\n1. Approve the add-on milestone and adjust our launch date by [X] days, or\n2. Shelf this for a dedicated Phase 2 release once the primary launch is live.\n\nLet me know which direction fits your schedule best!\n\nBest,\nYour Name / Studio',
+          tip: '💡 <strong>Tip:</strong> Never say a blunt "No." Use the "Yes, and..." technique—frame the addition as completely doable with an adjusted budget and timeline.'
+        },
+        'upfront-deposit': {
+          subject: 'Statement of Work & Kickoff Deposit for {CLIENT_NAME}',
+          body: 'Hi {CONTACT_NAME},\n\nWe are thrilled to officially partner with {CLIENT_NAME} on this upcoming initiative!\n\nOur team has reserved studio capacity starting next Monday. As outlined in our onboarding terms, we require a 50% initial kickoff deposit ({INVOICE_AMOUNT}) to secure the calendar slot and initiate discovery sprints.\n\nYou can review Invoice {INVOICE_NUM} and remit payment online here: [Ledgerly Payment Link].\n\nAs soon as payment is confirmed, we will dispatch your shared workspace invites and calendar links for our kickoff alignment session.\n\nExcited to build this with you!\n\nBest regards,\nYour Name / Studio',
+          tip: '💡 <strong>Tip:</strong> Never start unbilled kickoff work before the deposit clears. Framing the deposit as "reserving calendar capacity" makes it non-negotiable.'
+        }
+      };
+
+      let activeScriptId = 'late-soft';
+
+      function renderActiveScript() {
+        const template = scriptsDb[activeScriptId] || scriptsDb['late-soft'];
+        const clientVal = (varClientName && varClientName.value.trim()) || 'Northwind Co.';
+        const contactVal = (varContactName && varContactName.value.trim()) || 'Sarah';
+        const invoiceVal = (varInvoiceNum && varInvoiceNum.value.trim()) || '#INV-1048';
+        const amountVal = (varInvoiceAmount && varInvoiceAmount.value.trim()) || (activeCurrencySymbol + '4,800.00');
+
+        function replaceVars(str) {
+          return str
+            .replace(/{CLIENT_NAME}/g, clientVal)
+            .replace(/{CONTACT_NAME}/g, contactVal)
+            .replace(/{INVOICE_NUM}/g, invoiceVal)
+            .replace(/{INVOICE_AMOUNT}/g, amountVal);
+        }
+
+        if (scriptRenderedSubject) scriptRenderedSubject.textContent = replaceVars(template.subject);
+        if (scriptRenderedBody) scriptRenderedBody.textContent = replaceVars(template.body);
+        if (scriptTacticalTip) scriptTacticalTip.innerHTML = template.tip;
+      }
+
+      // Variable inputs listeners
+      [varClientName, varContactName, varInvoiceNum, varInvoiceAmount].forEach(function (input) {
+        if (input) input.addEventListener('input', renderActiveScript);
+      });
+
+      // Script selector buttons
+      scriptMenuItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+          scriptMenuItems.forEach(function (btn) { btn.classList.remove('active'); });
+          item.classList.add('active');
+          activeScriptId = item.getAttribute('data-script-id');
+          renderActiveScript();
+        });
+      });
+
+      // Copy Script to Clipboard
+      if (btnCopyActiveScript) {
+        btnCopyActiveScript.addEventListener('click', function () {
+          const subject = scriptRenderedSubject ? scriptRenderedSubject.textContent : '';
+          const body = scriptRenderedBody ? scriptRenderedBody.textContent : '';
+          const fullText = subject + '\n\n' + body;
+
+          navigator.clipboard.writeText(fullText).then(function () {
+            const btnSpan = btnCopyActiveScript.querySelector('span');
+            btnCopyActiveScript.classList.add('copied');
+            if (btnSpan) btnSpan.textContent = 'Copied to Clipboard! ✓';
+
+            setTimeout(function () {
+              btnCopyActiveScript.classList.remove('copied');
+              if (btnSpan) btnSpan.textContent = 'Copy Script';
+            }, 2500);
+          }).catch(function () {
+            alert('Script copied to clipboard!');
+          });
         });
       }
 
-      // 18. Keyboard Shortcuts Modal & Global Key Listeners
+      // Copy Contract Clauses to Clipboard
+      const clauseCopyBtns = document.querySelectorAll('.btn-copy-clause');
+      clauseCopyBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const targetId = btn.getAttribute('data-target-clause');
+          const targetEl = document.getElementById(targetId);
+          if (!targetEl) return;
+          const text = targetEl.textContent.trim().replace(/^"|"$/g, '');
+
+          navigator.clipboard.writeText(text).then(function () {
+            const span = btn.querySelector('span');
+            btn.classList.add('copied');
+            if (span) span.textContent = 'Copied! ✓';
+
+            setTimeout(function () {
+              btn.classList.remove('copied');
+              if (span) span.textContent = 'Copy Clause';
+            }, 2000);
+          });
+        });
+      });
+
+      // Playbook Tabs Switcher
+      playbookTabBtns.forEach(function (tabBtn) {
+        tabBtn.addEventListener('click', function () {
+          playbookTabBtns.forEach(function (btn) {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+          });
+          playbookPanels.forEach(function (panel) {
+            panel.classList.remove('is-active');
+          });
+
+          tabBtn.classList.add('active');
+          tabBtn.setAttribute('aria-selected', 'true');
+          const targetId = tabBtn.getAttribute('aria-controls');
+          const targetPanel = document.getElementById(targetId);
+          if (targetPanel) targetPanel.classList.add('is-active');
+        });
+      });
+
+      // 19. Keyboard Shortcuts Modal & Global Key Listeners
       const shortcutsModalBackdrop = document.getElementById('shortcuts-modal-backdrop');
       const btnShortcutsToggle = document.getElementById('btn-shortcuts-toggle');
       const btnCloseShortcutsModal = document.getElementById('btn-close-shortcuts-modal');
@@ -5639,6 +6555,12 @@
             closePdfModal();
           } else if (typeof btnOpenPdfModal !== 'undefined' && btnOpenPdfModal) {
             btnOpenPdfModal.click();
+          }
+        } else if (key === 'k') {
+          e.preventDefault();
+          const playbookEl = document.getElementById('playbook');
+          if (playbookEl) {
+            playbookEl.scrollIntoView({ behavior: 'smooth' });
           }
         } else if (key === '1') {
           e.preventDefault();
