@@ -412,6 +412,351 @@
       gap: 6px;
     }
 
+    /* -------------------------------------------------------------
+       AMBIENT LIVING BACKGROUND (Canvas & Dynamic Fluid Glow)
+       ------------------------------------------------------------- */
+    .ambient-bg-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-bg-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.55;
+      transition: opacity 0.5s ease;
+    }
+
+    [data-theme="dark"] .ambient-bg-canvas {
+      opacity: 0.75;
+    }
+
+    .ambient-glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      opacity: 0.22;
+      animation: floatSlow 22s infinite alternate ease-in-out;
+    }
+
+    [data-theme="dark"] .ambient-glow-orb {
+      opacity: 0.18;
+      filter: blur(95px);
+    }
+
+    .ambient-glow-orb-1 {
+      top: -15%;
+      right: 10%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, var(--accent-green) 0%, rgba(27, 181, 141, 0) 70%);
+      animation-duration: 20s;
+    }
+
+    .ambient-glow-orb-2 {
+      top: 35%;
+      left: -10%;
+      width: 460px;
+      height: 460px;
+      background: radial-gradient(circle, #b7791f 0%, rgba(183, 121, 31, 0) 70%);
+      animation-duration: 26s;
+      animation-delay: -6s;
+    }
+
+    .ambient-glow-orb-3 {
+      bottom: 0%;
+      right: 25%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #10b981 0%, rgba(16, 185, 129, 0) 70%);
+      animation-duration: 24s;
+      animation-delay: -12s;
+    }
+
+    @keyframes floatSlow {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(45px, -35px) scale(1.08);
+      }
+      100% {
+        transform: translate(-35px, 40px) scale(0.94);
+      }
+    }
+
+    @keyframes pulsePing {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(27, 181, 141, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 7px rgba(27, 181, 141, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(27, 181, 141, 0);
+      }
+    }
+
+    /* -------------------------------------------------------------
+       AUTONOMOUS 24/7 BACKGROUND AUTOMATIONS BAR & DRAWER
+       ------------------------------------------------------------- */
+    .bg-automation-bar {
+      margin-top: 26px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all var(--transition-base);
+    }
+
+    .bg-automation-bar:hover {
+      box-shadow: var(--shadow-card);
+      border-color: rgba(15, 93, 74, 0.3);
+    }
+
+    .bg-automation-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .bg-pulse-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .bg-pulse-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      position: relative;
+      flex-shrink: 0;
+      animation: pulsePing 2.2s infinite;
+    }
+
+    .bg-automation-summary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .bg-badge-text {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-green);
+      background: var(--accent-green-subtle);
+      border: 1px solid rgba(15, 93, 74, 0.15);
+      border-radius: var(--radius-pill);
+      padding: 2px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .bg-live-ticker {
+      font-size: 0.82rem;
+      color: var(--text-ink);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .btn-toggle-bg-drawer {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-pill);
+      padding: 4px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all var(--transition-base);
+    }
+
+    .btn-toggle-bg-drawer:hover {
+      color: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+
+    .btn-toggle-bg-drawer svg {
+      transition: transform 0.25s ease;
+    }
+
+    .btn-toggle-bg-drawer[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+
+    .bg-engine-drawer {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+      border-top: 1px solid transparent;
+      background: var(--bg-card-subtle);
+    }
+
+    .bg-engine-drawer.is-open {
+      max-height: 500px;
+      opacity: 1;
+      border-top-color: var(--border-subtle);
+    }
+
+    .bg-queue-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px 16px;
+    }
+
+    @media (max-width: 600px) {
+      .bg-queue-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .bg-queue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      transition: transform var(--transition-base), border-color var(--transition-base);
+    }
+
+    .bg-queue-item:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-1px);
+    }
+
+    .bg-item-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: var(--accent-green-subtle);
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .bg-item-body {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .bg-item-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .bg-status-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: var(--radius-pill);
+      background: rgba(19, 22, 27, 0.06);
+      color: var(--text-muted);
+    }
+
+    .bg-tag-running {
+      background: var(--accent-green-subtle);
+      color: var(--accent-green);
+    }
+
+    .bg-item-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    .bg-drawer-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      flex-wrap: wrap;
+    }
+
+    .bg-footer-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .btn-trigger-bg-cycle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-green);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .btn-trigger-bg-cycle:hover {
+      background: var(--accent-green-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-trigger-bg-cycle.is-running svg {
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
     /* Interactive Invoice Card (UX Change 4) */
     .hero-visual {
       position: relative;
@@ -2977,6 +3322,36 @@
       box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.6);
     }
 
+    /* Autonomous Background Engine in Dark Mode */
+    [data-theme="dark"] .bg-automation-bar {
+      background: #151921;
+      border-color: var(--border-warm);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    [data-theme="dark"] .btn-toggle-bg-drawer {
+      background: #1c222c;
+      border-color: var(--border-warm);
+    }
+    [data-theme="dark"] .bg-engine-drawer {
+      background: #12151b;
+    }
+    [data-theme="dark"] .bg-queue-item {
+      background: #171b22;
+      border-color: var(--border-warm);
+    }
+    [data-theme="dark"] .bg-drawer-footer {
+      background: #151921;
+      border-top-color: var(--border-warm);
+    }
+    [data-theme="dark"] .bg-status-tag {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+    }
+    [data-theme="dark"] .bg-tag-running {
+      background: rgba(27, 181, 141, 0.2);
+      color: #6ee7b7;
+    }
+
     /* --- Theme & Shortcuts Navigation Controls --- */
     .nav-actions-group {
       display: flex;
@@ -4241,7 +4616,15 @@
          2. HERO SECTION WITH INTERACTIVE INVOICE CARD (UX Change 4)
          ============================================================= -->
     <section class="section hero-section" id="hero">
-      <div class="container">
+      <!-- Living Dynamic Background (Canvas Particles + Ambient Aurora Glow) -->
+      <div class="ambient-bg-wrapper" aria-hidden="true">
+        <canvas id="ambient-bg-canvas" class="ambient-bg-canvas"></canvas>
+        <div class="ambient-glow-orb ambient-glow-orb-1"></div>
+        <div class="ambient-glow-orb ambient-glow-orb-2"></div>
+        <div class="ambient-glow-orb ambient-glow-orb-3"></div>
+      </div>
+
+      <div class="container" style="position: relative; z-index: 1;">
         <div class="hero-grid">
           <!-- Left Column: Copy & Primary CTAs -->
           <div class="hero-content">
@@ -4285,6 +4668,76 @@
                 </svg>
                 Multi-currency billing
               </span>
+            </div>
+
+            <!-- Autonomous 24/7 Background Automations Engine Bar -->
+            <div class="bg-automation-bar" id="bg-automation-bar" role="region" aria-label="Autonomous Background Engine">
+              <div class="bg-automation-header" id="bg-automation-header" role="button" tabindex="0" aria-expanded="false" aria-controls="bg-engine-drawer">
+                <div class="bg-pulse-wrapper">
+                  <div class="bg-pulse-indicator" aria-hidden="true"></div>
+                  <div class="bg-automation-summary">
+                    <span class="bg-badge-text">Runs in background</span>
+                    <span class="bg-live-ticker" id="bg-live-ticker">⚡ Auto-matched $3,200 payment from Stripe webhook</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-toggle-bg-drawer" id="btn-toggle-bg-drawer" aria-label="Toggle background tasks drawer">
+                  <span>4 active</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+              </div>
+
+              <!-- Collapsible Background Engine Drawer -->
+              <div class="bg-engine-drawer" id="bg-engine-drawer" aria-hidden="true">
+                <div class="bg-queue-grid">
+                  <div class="bg-queue-item">
+                    <div class="bg-item-icon">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="bg-item-body">
+                      <div class="bg-item-title">Bank &amp; Stripe Webhook Sync <span class="bg-status-tag bg-tag-running">Continuous</span></div>
+                      <div class="bg-item-sub">Zero manual reconciliation. Invoices flip to 'Paid' the second funds clear.</div>
+                    </div>
+                  </div>
+
+                  <div class="bg-queue-item">
+                    <div class="bg-item-icon">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="bg-item-body">
+                      <div class="bg-item-title">Polite Follow-up Sequencer <span class="bg-status-tag">Next: 09:00 AM</span></div>
+                      <div class="bg-item-sub">Dispatches gentle milestone reminder 3 days before net-30 expiry.</div>
+                    </div>
+                  </div>
+
+                  <div class="bg-queue-item">
+                    <div class="bg-item-icon">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <div class="bg-item-body">
+                      <div class="bg-item-title">Profit First Auto-Sweep <span class="bg-status-tag">Rule: 25% Tax</span></div>
+                      <div class="bg-item-sub">Instantly segregates tax &amp; profit reserves into insulated sub-accounts.</div>
+                    </div>
+                  </div>
+
+                  <div class="bg-queue-item">
+                    <div class="bg-item-icon">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                    </div>
+                    <div class="bg-item-body">
+                      <div class="bg-item-title">FX Slippage Watchdog <span class="bg-status-tag">Threshold: 1.2%</span></div>
+                      <div class="bg-item-sub">Monitors real-time mid-market rates on international client retainers.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-drawer-footer">
+                  <span class="bg-footer-meta">Runs in background 24/7 on edge workers</span>
+                  <button type="button" class="btn-trigger-bg-cycle" id="btn-trigger-bg-cycle" title="Simulate a live background execution">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                    <span>Simulate background run</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -7705,6 +8158,270 @@
           closePdfModal();
         }
       });
+
+      // 18. Ambient Dynamic Background Canvas Engine
+      function initAmbientBackgroundCanvas() {
+        var canvas = document.getElementById('ambient-bg-canvas');
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        var width = 0;
+        var height = 0;
+        var particles = [];
+        var animId = null;
+        var mouse = { x: -9999, y: -9999, targetX: -9999, targetY: -9999 };
+        var isVisible = true;
+        var heroEl = document.getElementById('hero');
+
+        function resize() {
+          if (!heroEl) return;
+          var rect = heroEl.getBoundingClientRect();
+          width = rect.width;
+          height = rect.height;
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.scale(dpr, dpr);
+        }
+
+        function createParticles() {
+          particles = [];
+          var count = Math.floor(Math.min(width, 1200) / 45);
+          for (var i = 0; i < count; i++) {
+            particles.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: (Math.random() - 0.5) * 0.45,
+              vy: (Math.random() - 0.5) * 0.45,
+              radius: Math.random() * 2.5 + 1.2,
+              baseAlpha: Math.random() * 0.35 + 0.15,
+              alpha: Math.random() * 0.35 + 0.15,
+              phase: Math.random() * Math.PI * 2
+            });
+          }
+        }
+
+        resize();
+        createParticles();
+
+        window.addEventListener('resize', function () {
+          resize();
+          createParticles();
+        });
+
+        if (heroEl) {
+          heroEl.addEventListener('mousemove', function (e) {
+            var rect = heroEl.getBoundingClientRect();
+            mouse.targetX = e.clientX - rect.left;
+            mouse.targetY = e.clientY - rect.top;
+          });
+          heroEl.addEventListener('mouseleave', function () {
+            mouse.targetX = -9999;
+            mouse.targetY = -9999;
+          });
+        }
+
+        function render(time) {
+          if (!isVisible) return;
+          ctx.clearRect(0, 0, width, height);
+
+          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          var particleColor = isDark ? '27, 181, 141' : '15, 93, 74';
+          var accentGold = isDark ? '245, 158, 11' : '183, 121, 31';
+
+          // Smooth mouse interpolation
+          if (mouse.targetX !== -9999) {
+            mouse.x += (mouse.targetX - mouse.x) * 0.06;
+            mouse.y += (mouse.targetY - mouse.y) * 0.06;
+          } else {
+            mouse.x = -9999;
+            mouse.y = -9999;
+          }
+
+          var len = particles.length;
+          for (var i = 0; i < len; i++) {
+            var p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Bounce off edges smoothly
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            // Subtle mouse repulsion / attraction
+            if (mouse.x !== -9999) {
+              var dx = mouse.x - p.x;
+              var dy = mouse.y - p.y;
+              var dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 140) {
+                var force = (140 - dist) / 140;
+                p.x -= (dx / dist) * force * 1.5;
+                p.y -= (dy / dist) * force * 1.5;
+              }
+            }
+
+            p.phase += 0.015;
+            var currentAlpha = p.baseAlpha + Math.sin(p.phase) * 0.12;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            var col = (i % 4 === 0) ? accentGold : particleColor;
+            ctx.fillStyle = 'rgba(' + col + ', ' + Math.max(0.05, currentAlpha) + ')';
+            ctx.fill();
+
+            // Connect nearby particles with subtle filament lines
+            for (var j = i + 1; j < len; j++) {
+              var p2 = particles[j];
+              var dxx = p.x - p2.x;
+              var dyy = p.y - p2.y;
+              var d = Math.sqrt(dxx * dxx + dyy * dyy);
+              if (d < 85) {
+                var lineAlpha = (1 - d / 85) * (isDark ? 0.18 : 0.12);
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = 'rgba(' + particleColor + ', ' + lineAlpha + ')';
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+              }
+            }
+          }
+
+          if (!reducedMotion) {
+            animId = requestAnimationFrame(render);
+          }
+        }
+
+        if (!reducedMotion) {
+          animId = requestAnimationFrame(render);
+        }
+
+        // IntersectionObserver to pause rendering when hero is scrolled out of view
+        if ('IntersectionObserver' in window && heroEl) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              isVisible = entry.isIntersecting;
+              if (isVisible && !animId && !reducedMotion) {
+                animId = requestAnimationFrame(render);
+              }
+            });
+          }, { threshold: 0.05 });
+          observer.observe(heroEl);
+        }
+      }
+      initAmbientBackgroundCanvas();
+
+      // 19. Autonomous 24/7 Background Automations Engine
+      function initBackgroundAutomationEngine() {
+        var headerBtn = document.getElementById('bg-automation-header');
+        var toggleBtn = document.getElementById('btn-toggle-bg-drawer');
+        var drawer = document.getElementById('bg-engine-drawer');
+        var ticker = document.getElementById('bg-live-ticker');
+        var triggerBtn = document.getElementById('btn-trigger-bg-cycle');
+
+        var events = [
+          '⚡ Auto-matched $3,200 payment from Stripe webhook (Northwind Co.)',
+          '📨 Queued polite Net-30 reminder for Studio Forma (scheduled 09:00 AM)',
+          '🏦 Swept $800 into automated 25% tax vault via Plaid transfer',
+          '💱 Mid-market FX rate locked: $4,800 USD = £3,780.20 GBP (0% slippage)',
+          '🛡️ Scope Creep Watchdog: 2 rounds of revisions logged for Milestone 2',
+          '✓ Auto-reconciled ACH wire deposit: $14,200 for Apex Brand Studio'
+        ];
+
+        var currentIndex = 0;
+        var tickerTimer = null;
+
+        function rotateTicker() {
+          if (!ticker) return;
+          ticker.style.opacity = '0';
+          ticker.style.transform = 'translateY(4px)';
+
+          setTimeout(function () {
+            currentIndex = (currentIndex + 1) % events.length;
+            ticker.textContent = events[currentIndex];
+            ticker.style.opacity = '1';
+            ticker.style.transform = 'translateY(0)';
+          }, 250);
+        }
+
+        tickerTimer = setInterval(rotateTicker, 5500);
+
+        function toggleDrawer(e) {
+          if (!drawer) return;
+          var isOpen = drawer.classList.contains('is-open');
+          if (isOpen) {
+            drawer.classList.remove('is-open');
+            drawer.setAttribute('aria-hidden', 'true');
+            if (headerBtn) headerBtn.setAttribute('aria-expanded', 'false');
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+          } else {
+            drawer.classList.add('is-open');
+            drawer.setAttribute('aria-hidden', 'false');
+            if (headerBtn) headerBtn.setAttribute('aria-expanded', 'true');
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+          }
+        }
+
+        if (headerBtn) {
+          headerBtn.addEventListener('click', function (e) {
+            if (e.target.closest('#btn-trigger-bg-cycle')) return;
+            toggleDrawer(e);
+          });
+          headerBtn.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleDrawer(e);
+            }
+          });
+        }
+
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleDrawer(e);
+          });
+        }
+
+        if (triggerBtn) {
+          triggerBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            triggerBtn.classList.add('is-running');
+            var origText = triggerBtn.querySelector('span');
+            if (origText) origText.textContent = 'Reconciling...';
+
+            if (ticker) {
+              ticker.textContent = '🔄 Running background reconciliation cycle...';
+            }
+
+            setTimeout(function () {
+              triggerBtn.classList.remove('is-running');
+              if (origText) origText.textContent = 'Cycle complete ✓';
+
+              if (ticker) {
+                ticker.textContent = '✓ Background cycle complete: Invoices matched and ledger reconciled!';
+              }
+
+              // Flash pulse on hero invoice card
+              var heroCard = document.getElementById('hero-invoice-card');
+              if (heroCard) {
+                heroCard.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+                heroCard.style.borderColor = 'var(--accent-green)';
+                heroCard.style.boxShadow = '0 0 0 3px rgba(27, 181, 141, 0.3), var(--shadow-card)';
+                setTimeout(function () {
+                  heroCard.style.borderColor = '';
+                  heroCard.style.boxShadow = '';
+                }, 1200);
+              }
+
+              setTimeout(function () {
+                if (origText) origText.textContent = 'Simulate background run';
+              }, 2200);
+            }, 850);
+          });
+        }
+      }
+      initBackgroundAutomationEngine();
 
     })();
   </script>
